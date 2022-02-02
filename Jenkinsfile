@@ -87,7 +87,6 @@ pipeline {
             ls -ls ~/.kube/
             env
             cd workloads/network-perf
-            pip3 install -r requirements.txt
             ./run_pod_network_policy_test_fromgit.sh
             rm -rf ~/.kube
             '''
