@@ -104,7 +104,7 @@ pipeline {
             echo "Write to file"
             echo $ROSA_TOKEN >& /tmp/rosa-token
             cat /tmp/rosa-token
-            rosa login --env=staging --token=$ROSA_TOKEN
+            rosa login --env=staging --token=$ROSA_TOKEN --debug
             rosa login --env=staging --token="$ROSA_TOKEN"
             echo 
             echo "Print debug output"
