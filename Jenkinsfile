@@ -100,7 +100,14 @@ pipeline {
         script {
           withCredentials([string(credentialsId: 'perfscale-rosa-token', variable: 'ROSA_TOKEN')]) {
           sh(returnStatus: true, script: '''
+            cat $ROSA_TOKEN
+            echo "Write to file"
+            echo $ROSA_TOKEN >& /tmp/rosa-token
+            cat /tmp/rosa-token
             rosa login --env=staging --token="$ROSA_TOKEN"
+            echo 
+            echo "Print debug output"
+            rosa login --env=staging --token="$ROSA_TOKEN" --debug
             rosa verify openshift-client
             rosa whoami
             which oc
