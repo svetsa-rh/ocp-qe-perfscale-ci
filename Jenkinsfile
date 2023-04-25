@@ -108,6 +108,7 @@ pipeline {
               --compute-machine-type ${COMPUTE_WORKERS_TYPE} --replicas ${COMPUTE_WORKERS_NUMBER} \
               --network-type ${NETWORK_TYPE} ${INSTALLATION_PARAMS} 
             ''')
+          }
         }
       }
     }
