@@ -100,7 +100,7 @@ pipeline {
         script {
           withCredentials([string(credentialsId: 'perfscale-rosa-token', variable: 'ROSA_TOKEN')]) {
           sh(returnStatus: true, script: '''
-            cat $ROSA_TOKEN
+            echo $ROSA_TOKEN
             echo "Write to file"
             echo $ROSA_TOKEN >& /tmp/rosa-token
             cat /tmp/rosa-token
