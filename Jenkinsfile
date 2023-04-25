@@ -98,6 +98,7 @@ pipeline {
       agent { label params['JENKINS_AGENT_LABEL'] }
       steps{
         script {
+          withCredentials([file(credentialsId: 'perfscale-rosa-token', variable: 'ROSA_TOKEN')]) {
           sh(returnStatus: true, script: '''
             rosa verify openshift-client
             rosa whoami
