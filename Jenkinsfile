@@ -98,8 +98,12 @@ pipeline {
       agent { label params['JENKINS_AGENT_LABEL'] }
       steps{
         script {
-          withCredentials([string(credentialsId: 'perfscale-rosa-token', variable: 'ROSA_TOKEN')]) {
+          withCredentials([string(credentialsId: 'perfscale-rosa-token', variable: 'ROSA_TOKEN'),
+            file(credentialsId: 'b73d6ed3-99ff-4e06-b2d8-64eaaf69d1db', variable: 'OCP_AWS')]) {
           sh(returnStatus: true, script: '''
+            mkdir -p ~/.aws
+            cp -f $OCP_AWS ~/.aws/credentials
+            aws iam get-user
             rosa version
             ocm version
             echo $ROSA_TOKEN
